@@ -11,3 +11,5 @@ repo_links.txt
 status.txt
 .built_dirs.txt
 
+results/*
+

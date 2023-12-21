@@ -1,7 +1,7 @@
 # carlo_dir
 This is a template carlo_dir for monte-moos.  
 
------------Setup-----------
+-----------Setup-----------  
 $ cd ~  
 $ git clone git@github.mit.edu:kevin00/monte-moos.git  
 $ git clone git@github.mit.edu:kevin00/carlo_dir.git   
@@ -20,7 +20,6 @@ repo_links.txt
 $ vim ~/.bashrc  
 # add the following line to the end of the file  
 source ~/carlo_dir/monte_info  
-
 
 
 -----------Running  alpha once-----------  
