@@ -1,5 +1,5 @@
 # carlo_dir
-This is a template carlo_dir for monte-moos
+This is a template carlo_dir for monte-moos.
 
 -----------Setup-----------
 $ cd ~
@@ -11,12 +11,17 @@ monte_info
 job_dirs/
 repo_links.txt
 $ emacs monte_info # edit to ensure things are in the right location
-$ echo “European_Swallow” > .password
+$ echo “Ask Kevin for password” > .password
 $ ls -a
 monte_info 
 job_dirs/
 repo_links.txt
 .password
+$ vim ~/.bashrc
+# add the following line to the end of the file
+source ~/carlo_dir/monte_info
+
+
 
 -----------Running  alpha once-----------
 $ pwd
