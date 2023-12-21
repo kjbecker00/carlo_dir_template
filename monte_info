@@ -1,0 +1,37 @@
+#!/bin/bash
+####################################
+# Client-side info
+####################################
+# Where to look for installed monte-moos scripts
+export MONTE_MOOS_BASE_DIR="${HOME}/monte-moos"
+export PATH="${PATH}:${HOME}/monte-moos/global_scripts/"
+export CARLO_DIR_LOCATION="${HOME}/carlo-dir"
+
+# Where to find repo_links.txt
+export MONTE_MOOS_BASE_REPO_LINKS="${CARLO_DIR_LOCATION}/repo_links.txt"
+# Where to find/put moos-ivp installations
+export MONTE_MOOS_CLIENT_REPOS_DIR="${CARLO_DIR_LOCATION}/moos_dirs"
+
+####################################
+# Host info
+####################################
+# SSH info (for retrieving files)
+export MONTE_MOOS_HOST="oceanai"
+export MONTE_MOOS_HOSTNAME_SSH="oceanai.mit.edu"
+export MONTE_MOOS_USERNAME="yodacora"
+export MONTE_MOOS_HOST_SSH_KEY="${HOME}/.ssh/id_rsa_yco"
+
+# WGET info (for downloading files)
+export MONTE_MOOS_HOSTNAME_WGET="https://oceanai.mit.edu"
+
+# - - - - - - - - - - -
+# Host directory info
+# - - - - - - - - - - -
+# Where clients retrieve files
+export MONTE_MOOS_HOST_WEB_ROOT_DIR="/home/web/"
+export MONTE_MOOS_HOST_ACCESSABLE_BASE_DIR="/monte"
+# Where clients put files (NOTE: the MONTE_MOOS_USERNAME must have write access to this directory)
+export MONTE_MOOS_HOST_RECIEVE_DIR="/home/yodacora/monte-moos"
+
+
+

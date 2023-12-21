@@ -1,0 +1,10 @@
+#!/bin/bash 
+# Kevin Becker, June 9 2023
+# alpha_job
+
+SHORE_REPO="moos-ivp"
+SHORE_MISSION="ivp/missions/s1_alpha"
+SHORE_FLAGS=" --nogui 5"  
+JOB_TIMEOUT=60 # (timewarp is not accounted)
+SHORE_TARG="alpha.moos"  # Targ file for the shore mission
+
