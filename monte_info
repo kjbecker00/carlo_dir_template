@@ -4,7 +4,7 @@
 ####################################
 # Where to look for installed monte-moos scripts
 export MONTE_MOOS_BASE_DIR="${HOME}/monte-moos"
-export PATH="${PATH}:${HOME}/monte-moos/global_scripts/"
+export PATH="${PATH}:${MONTE_MOOS_BASE_DIR}/global_scripts/"
 export CARLO_DIR_LOCATION="${HOME}/carlo_dir"
 
 # Where to find repo_links.txt
