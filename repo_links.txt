@@ -1,7 +1,4 @@
 ~/moos-ivp/
 ~/moos-ivp-pavlab/
 ~/moos-ivp-swarm/
-~/moos-ivp-kevinbecker/
 ~/moos-ivp-2680/
-~/moos-ivp-aquaticus/
-
