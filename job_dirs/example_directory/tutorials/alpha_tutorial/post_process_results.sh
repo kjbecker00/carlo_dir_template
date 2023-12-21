@@ -1,7 +1,7 @@
 #!/bin/bash
 #-------------------------------------------------------------- 
 # Author: Kevin Becker
-# Date: 08/13/2023
+# Date: 12/21/2023
 # Example sript for mission alpha: post_process_results.sh
 #-------------------------------------------------------------- 
 # Part 1: Convenience functions
@@ -58,10 +58,6 @@ MOOS_VALUE2=$(aloggrep ${SHORE_ALOG} ${MOOS_KEY2} --final -q --v)
 MOOS_VALUE3=$(aloggrep ${SHORE_ALOG} ${MOOS_KEY3} --final -q --v)
 MOOS_VALUE4=$(aloggrep ${SHORE_ALOG} ${MOOS_KEY4} --final -q --v)
 
-# if [[ -z "$MOOS_VALUE" || -z "$MOOS_VALUE2" || -z "$MOOS_VALUE3" || -z "$MOOS_VALUE4" ]]; then
-#    echo "Error, unable to find all variables. Exiting..."
-#    exit 2
-# fi
 
 KEYS="${MOOS_KEY},${MOOS_KEY2},${MOOS_KEY3},${MOOS_KEY4}"
 VALUES="$MOOS_VALUE,$MOOS_VALUE2,$MOOS_VALUE3,$MOOS_VALUE4"
@@ -84,15 +80,15 @@ echo "$VALUES" >> $RESULTS_DIR/results.csv
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Generate a track, showing each vehicle
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - -
-vecho "RUNNING scripts/alog2image.py -a -i --fname=${RESULTS_DIR}/web/track.png " 1
-scripts/alog2image.py -i --fname=$RESULTS_DIR/web/track.png $SHORE_ALOG
+vecho "RUNNING ${MONTE_MOOS_BASE_DIR}/scripts/alog2image.py -a -i --fname=${RESULTS_DIR}/web/track.png " 1
+${MONTE_MOOS_BASE_DIR}/scripts/alog2image.py -i --fname=$RESULTS_DIR/web/track.png $SHORE_ALOG
 if [[ $? -ne 0 ]]; then
     echo "Error, could not run alog2image.py with shore alog $SHORE_ALOG Exit code: $EXIT_CODE. Continuing..."
 fi
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Include some informaiton on the client
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - -
-echo "Ran on host:  $(cat myname.txt)" > $RESULTS_DIR/machine_info.txt
+echo "Ran on host:  $(cat ${CARLO_DIR_LOCATION}/myname.txt)" > $RESULTS_DIR/machine_info.txt
 echo "Username:     $(id -un)"     >> $RESULTS_DIR/machine_info.txt
 
 
