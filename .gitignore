@@ -1,0 +1,13 @@
+
+
+# Machine specific files
+myname.txt
+
+# Setup specific files
+monte_info
+repo_links.txt
+
+# Cache files
+status.txt
+.built_dirs.txt
+
