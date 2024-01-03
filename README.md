@@ -19,9 +19,10 @@ $ ls
      monte_info 
      repo_links.txt
 $ git remote rm origin # So it doesn't reference the template
-$ git remote add origin your-repos-url # Add your repo url here. ex: git@github.mit.edu:kevin00/carlo_dir_2.git
+$ # Go to your github account and make a new repository. Note the url printed on the webpage (ex: git@github.mit.edu:username/my_carlo_dir)
+$ git remote add origin your-repos-url # Add your repo url here. ex: git@github.mit.edu:username/my_carlo_dir.git
 $ git branch -M main
-$ git push -u origin main # Push to the host
+$ git push -u origin main # Push to the host!
 ```
 
 3. Add the following lines to your .bashrc file
@@ -43,7 +44,7 @@ source ${CARLO_DIR_LOCATION}/monte_info
 $ cd my_carlo_dir
 $ vim monte_info 
 
-# In particualr, check the locations of the following variables:
+# In particular, check the locations of the following variables:
 #   MONTE_MOOS_HOST_SSH_KEY
 #   MONTE_MOOS_USERNAME
 
