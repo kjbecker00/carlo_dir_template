@@ -42,10 +42,22 @@ mkdir -p $RESULTS_DIR/web
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Find the shore alog file
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - -
-SHORE_ALOG=$(find "${MONTE_MOOS_CLIENT_REPOS_DIR}/${SHORE_REPO}/${SHORE_MISSION}"/*/*.alog 2>/dev/null | head -1)
-if [ -z $SHORE_ALOG ]; then
-    echo "Error, could not find shore alog file at ${MONTE_MOOS_CLIENT_REPOS_DIR}/${SHORE_REPO}/${SHORE_MISSION}. Exiting..."
+if [ -d "${MONTE_MOOS_CLIENT_REPOS_DIR}/${SHORE_REPO}/${SHORE_MISSION}" ]; then
+    FULL_MISSION_DIR="${MONTE_MOOS_CLIENT_REPOS_DIR}/${SHORE_REPO}/${SHORE_MISSION}"
+elif [ -d "${MONTE_MOOS_CLIENT_REPOS_DIR}/${SHORE_REPO}/trunk/${SHORE_MISSION}" ]; then
+    FULL_MISSION_DIR="${MONTE_MOOS_CLIENT_REPOS_DIR}/${SHORE_REPO}/trunk/${SHORE_MISSION}"
+else
+    echo "Error, could not find shore mission directory at ${MONTE_MOOS_CLIENT_REPOS_DIR}/${SHORE_REPO}/${SHORE_MISSION} or ${MONTE_MOOS_CLIENT_REPOS_DIR}/${SHORE_REPO}/trunk/${SHORE_MISSION}. Exiting..."
     exit 1
+fi
+SHORE_ALOG=$(find "${FULL_MISSION_DIR}" -maxdepth 3 -type f -iname "*SHORE*.alog" 2>/dev/null | head -1)
+if [ ! -f "$SHORE_ALOG" ]; then
+    vecho "shore alog not found in ${FULL_MISSION_DIR} -maxdepth 3 -type f -iname *SHORE*.alog" 2
+    SHORE_ALOG=$(find "${FULL_MISSION_DIR}" -maxdepth 3 -type f -iname "*.alog" 2>/dev/null | head -1)
+    if [ ! -f "$SHORE_ALOG" ]; then
+        vecho "No alogs found using: find ${FULL_MISSION_DIR} -maxdepth 3 -type f -iname *.alog" 2
+        SHORE_ALOG=$(find "${MONTE_MOOS_CLIENT_REPOS_DIR}/${SHORE_REPO}/trunk/${SHORE_MISSION}"  -maxdepth 3 -type f -iname "*SHORE*.alog" 2>/dev/null | head -1)
+    fi
 fi
 echo "SHORE ALOG = $SHORE_ALOG"
 MOOS_KEY="WPT_EFF_DIST_ALL"
