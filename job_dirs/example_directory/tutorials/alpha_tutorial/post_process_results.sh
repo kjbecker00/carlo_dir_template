@@ -21,8 +21,6 @@ for ARGI; do
         JOB_ARGS="${ARGI#*=}"
     elif [[ "${ARGI}" =~ "--local_results_dir=" ]]; then
         RESULTS_DIR="${ARGI#*=}"
-    elif [[ "${ARGI}" =~ "--local_results_dir=" ]]; then
-        RESULTS_DIR="${ARGI#*=}"
     else
         echo "Unrecognized option: $ARGI"
         exit 1
@@ -31,8 +29,6 @@ done
 
 . ${JOB_FILE} $JOB_ARGS
 mkdir -p $RESULTS_DIR/web
-
-
 
 #-------------------------------------------------------
 # Part 3: Write the result of one run to a csv.
@@ -59,6 +55,10 @@ if [ ! -f "$SHORE_ALOG" ]; then
         SHORE_ALOG=$(find "${MONTE_MOOS_CLIENT_REPOS_DIR}/${SHORE_REPO}/trunk/${SHORE_MISSION}"  -maxdepth 3 -type f -iname "*SHORE*.alog" 2>/dev/null | head -1)
     fi
 fi
+
+####################################################################################
+########################## SAFE TO EDIT BELOW THIS LINE ##########################
+##################################################################################
 echo "SHORE ALOG = $SHORE_ALOG"
 MOOS_KEY="WPT_EFF_DIST_ALL"
 MOOS_KEY2="WPT_EFF_TIME_ALL"
@@ -97,8 +97,11 @@ ${MONTE_MOOS_BASE_DIR}/scripts/alog2image.py -i --fname=$RESULTS_DIR/web/track.p
 if [[ $? -ne 0 ]]; then
     echo "Error, could not run alog2image.py with shore alog $SHORE_ALOG Exit code: $EXIT_CODE. Continuing..."
 fi
+
+
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Include some informaiton on the client
+# Include some informaiton on the client (good idea to 
+# include this)
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - -
 echo "Ran on host:  $(cat ${CARLO_DIR_LOCATION}/myname.txt)" > $RESULTS_DIR/machine_info.txt
 echo "Username:     $(id -un)"     >> $RESULTS_DIR/machine_info.txt
