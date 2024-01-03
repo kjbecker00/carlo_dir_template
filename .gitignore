@@ -1,15 +1,15 @@
-
-
-# Machine specific files
+# Machine/Setup files
 myname.txt
-
-# Setup specific files
 monte_info
 repo_links.txt
+
+# Private files (NEVER in source control)
+.password
 
 # Cache files
 status.txt
 .built_dirs.txt
 
+# Other
 results/*
 
