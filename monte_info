@@ -18,14 +18,14 @@ export MONTE_MOOS_BASE_REPO_LINKS="${CARLO_DIR_LOCATION}/repo_links.txt" # CLIEN
 # Where to find/put moos-ivp installations
 export MONTE_MOOS_CLIENT_REPOS_DIR="${CARLO_DIR_LOCATION}/moos_dirs" # CLIENT ONLY
 # WGET info (for downloading files)
-export MONTE_MOOS_HOSTNAME_WGET="https://oceanai.mit.edu" # CLIENT ONLY
+export MONTE_MOOS_HOST_URL_WGET="https://oceanai.mit.edu" # CLIENT ONLY
 # SSH info (for retrieving files)
 export MONTE_MOOS_HOSTNAME_SSH="oceanai.mit.edu" # CLIENT ONLY
 export MONTE_MOOS_USERNAME="yodacora" # CLIENT ONLY
 export MONTE_MOOS_HOST_SSH_KEY="${HOME}/.ssh/id_rsa_yco" # CLIENT ONLY
 # Where the client host can wget files from the host's $MONTE_MOOS_HOST_WEB_ROOT_DIR
-# Example: wget $MONTE_MOOS_HOSTNAME_WGET/$MONTE_MOOS_HOST_ACCESSABLE_BASE_DIR/filename
-export MONTE_MOOS_HOST_ACCESSABLE_BASE_DIR="/monte" # CLIENT
+# Example: wget $MONTE_MOOS_HOST_URL_WGET/$MONTE_MOOS_WGET_BASE_DIR/filename
+export MONTE_MOOS_WGET_BASE_DIR="/monte" # CLIENT
 
 ####################################
 # Host info
@@ -34,7 +34,7 @@ export MONTE_MOOS_HOST_ACCESSABLE_BASE_DIR="/monte" # CLIENT
 export MONTE_MOOS_HOST_JOB_DIRS="/home/monte/carlo_dir/public_job_dirs" # HOST ONLY
 # Where the host retreives the queue files
 export MONTE_MOOS_HOST_QUEUE_FILES="/home/monte/carlo_dir/public_queue_files" # HOST ONLY
-# Where clients retrieve files
+# Where clients retrieve files using: wget $MONTE_MOOS_HOST_URL_WGET/$MONTE_MOOS_WGET_BASE_DIR/filename
 export MONTE_MOOS_HOST_WEB_ROOT_DIR="/home/web/monte"  # HOST ONLY
 
 
