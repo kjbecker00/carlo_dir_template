@@ -1,16 +1,6 @@
 #!/bin/bash
 
 
-##########################################
-# Add to bashrc for both clients & host
-##########################################
-#   Installed monte-moos scripts
-#export MONTE_MOOS_BASE_DIR="/home/monte/monte-moos" # BOTH
-#export PATH="${PATH}:${MONTE_MOOS_BASE_DIR}/global_scripts" # BOTH
-#   Where to find the carlo_dir
-#export CARLO_DIR_LOCATION="${HOME}/carlo_dir" # BOTH
-
-
 ####################################
 # Shared (must be the same for 
 # clients and the host)
@@ -34,8 +24,9 @@ export MONTE_MOOS_HOSTNAME_WGET="https://oceanai.mit.edu" # CLIENT ONLY
 export MONTE_MOOS_HOSTNAME_SSH="oceanai.mit.edu" # CLIENT ONLY
 export MONTE_MOOS_USERNAME="yodacora" # CLIENT ONLY
 export MONTE_MOOS_HOST_SSH_KEY="${HOME}/.ssh/id_rsa_yco" # CLIENT ONLY
-# Where the host can read/write files
-export MONTE_MOOS_HOST_ACCESSABLE_BASE_DIR="/monte" # CLIENT, where it sees files from MONTE_MOOS_HOST_WEB_ROOT_DIR
+# Where the client host can wget files from the host's $MONTE_MOOS_HOST_WEB_ROOT_DIR
+# Example: wget $MONTE_MOOS_HOSTNAME_WGET/$MONTE_MOOS_HOST_ACCESSABLE_BASE_DIR/filename
+export MONTE_MOOS_HOST_ACCESSABLE_BASE_DIR="/monte" # CLIENT
 
 ####################################
 # Host info
@@ -46,8 +37,6 @@ export MONTE_MOOS_HOST_JOB_DIRS="/home/monte/carlo_dir/public_job_dirs" # HOST O
 export MONTE_MOOS_HOST_QUEUE_FILES="/home/monte/carlo_dir/public_queue_files" # HOST ONLY
 # Where clients retrieve files
 export MONTE_MOOS_HOST_WEB_ROOT_DIR="/home/web/monte"  # HOST ONLY
-
-
 
 
 
