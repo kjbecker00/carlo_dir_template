@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ####################################
 # Shared (must be the same for 
 # clients and the host)
