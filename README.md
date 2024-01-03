@@ -15,7 +15,7 @@ $ git clone git@github.mit.edu:kevin00/carlo_dir_template.git   my_carlo_dir
 $ cd my_carlo_dir  
 $ ls   
      README.md  
-     job_dirs/  
+     local_job_dirs/  # This is where you will put the jobs you want under version control
      monte_info 
      repo_links.txt
 $ git remote rm origin # So it doesn't reference the template
@@ -55,7 +55,7 @@ $ vim monte_info
 $ echo “Ask Kevin for password” > .password   
 $ ls -a  
      monte_info   
-     job_dirs/  
+     local_job_dirs/  
      repo_links.txt  
      .password  
 ```
@@ -68,7 +68,7 @@ $ ls -a
 ```bash  
 $ pwd  
 /home/users/my_carlo_dir  
-$ cd job_dirs/example_directory/tutorials/alpha_tutorial  
+$ cd local_job_dirs/example_directory/tutorials/alpha_tutorial  
 $ ls  
 alpha_job    
 post_process_results.sh   
@@ -79,7 +79,7 @@ $ monte_run_job.sh --job_file=alpha_job
 ```bash
 $ pwd  
 ~/my_carlo_dir   
-$ ls job_dirs
+$ ls local_job_dirs
        example_directory/
 $ echo example_directory/tutorials/alpha_tutorial/alpha_job 10 > host_job_queue.txt  
 $ monte_client_loop.sh -y -nh  
