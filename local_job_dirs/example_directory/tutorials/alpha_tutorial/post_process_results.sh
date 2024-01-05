@@ -27,8 +27,12 @@ for ARGI; do
     fi
 done
 
+# Source the job_file
 . ${JOB_FILE} $JOB_ARGS
-mkdir -p $RESULTS_DIR/web
+
+# Subdirectory which gets published to the internet
+# Useful for quickly viewing results anywhere in the world
+mkdir -p $RESULTS_DIR/web 
 
 #-------------------------------------------------------
 # Part 3: Write the result of one run to a csv.
@@ -84,12 +88,8 @@ echo "$VALUES" >> $RESULTS_DIR/results.csv
 
 
 #-------------------------------------------------------
-#  Part 4: Post-process the files on the *local* machine
-#          NOTE: be sure to direct all files to the
-#          directory $RESULTS_DIR
+#  Part 4: Generate other files
 #-------------------------------------------------------
-
-#- - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Generate a track, showing each vehicle
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - -
 vecho "RUNNING ${MONTE_MOOS_BASE_DIR}/scripts/alog2image.py -a -i --fname=${RESULTS_DIR}/web/track.png " 1
