@@ -7,7 +7,7 @@
 # Part 1: Convenience functions
 #-------------------------------------------------------------- 
 ME=$(basename "$0")
-VERBOSE=0
+VERBOSE=1
 vecho() { if [[ "$VERBOSE" -ge "$2" || -z "$2" ]]; then echo $(tput setaf 245)"$ME: $1" $(tput sgr0); fi }
 
 RESULTS_DIR=""
@@ -52,10 +52,10 @@ else
 fi
 SHORE_ALOG=$(find "${FULL_MISSION_DIR}" -maxdepth 3 -type f -iname "*SHORE*.alog" 2>/dev/null | head -1)
 if [ ! -f "$SHORE_ALOG" ]; then
-    vecho "shore alog not found in ${FULL_MISSION_DIR} -maxdepth 3 -type f -iname *SHORE*.alog" 2
+    vecho "shore alog not found in ${FULL_MISSION_DIR} -maxdepth 3 -type f -iname *SHORE*.alog" 1
     SHORE_ALOG=$(find "${FULL_MISSION_DIR}" -maxdepth 3 -type f -iname "*.alog" 2>/dev/null | head -1)
     if [ ! -f "$SHORE_ALOG" ]; then
-        vecho "No alogs found using: find ${FULL_MISSION_DIR} -maxdepth 3 -type f -iname *.alog" 2
+        vecho "No alogs found using: find ${FULL_MISSION_DIR} -maxdepth 3 -type f -iname *.alog" 1
         SHORE_ALOG=$(find "${MONTE_MOOS_CLIENT_REPOS_DIR}/${SHORE_REPO}/trunk/${SHORE_MISSION}"  -maxdepth 3 -type f -iname "*SHORE*.alog" 2>/dev/null | head -1)
     fi
 fi
@@ -64,20 +64,22 @@ fi
 ########################## SAFE TO EDIT BELOW THIS LINE ##########################
 ##################################################################################
 echo "SHORE ALOG = $SHORE_ALOG"
-MOOS_KEY="WPT_EFF_DIST_ALL"
-MOOS_KEY2="WPT_EFF_TIME_ALL"
-MOOS_KEY3="CYCLE_INDEX"
-MOOS_KEY4="WPT_INDEX"
+
+MOOS_KEY="DB_UPTIME"
+MOOS_KEY2="PROC_WATCH_ALL_OK"
+MOOS_KEY3="PROC_WATCH_TIME_WARP"
 
 MOOS_VALUE=$(aloggrep ${SHORE_ALOG} ${MOOS_KEY} --final -q --v)
 MOOS_VALUE2=$(aloggrep ${SHORE_ALOG} ${MOOS_KEY2} --final -q --v)
 MOOS_VALUE3=$(aloggrep ${SHORE_ALOG} ${MOOS_KEY3} --final -q --v)
-MOOS_VALUE4=$(aloggrep ${SHORE_ALOG} ${MOOS_KEY4} --final -q --v)
 
+if [[ -z "$MOOS_VALUE" || -z "$MOOS_VALUE2" || -z "$MOOS_VALUE3" ]]; then
+   echo "Error, unable to find all variables. Exiting..."
+   exit 2
+fi
 
-KEYS="${MOOS_KEY},${MOOS_KEY2},${MOOS_KEY3},${MOOS_KEY4}"
-VALUES="$MOOS_VALUE,$MOOS_VALUE2,$MOOS_VALUE3,$MOOS_VALUE4"
-
+KEYS="${MOOS_KEY},${MOOS_KEY2},${MOOS_KEY3}"
+VALUES="$MOOS_VALUE,$MOOS_VALUE2,$MOOS_VALUE3"
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Write to the main output file: results.csv
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -96,6 +98,19 @@ vecho "RUNNING ${MONTE_MOOS_BASE_DIR}/scripts/alog2image.py -a -i --fname=${RESU
 ${MONTE_MOOS_BASE_DIR}/scripts/alog2image.py -i --fname=$RESULTS_DIR/web/track.png $SHORE_ALOG
 if [[ $? -ne 0 ]]; then
     echo "Error, could not run alog2image.py with shore alog $SHORE_ALOG Exit code: $EXIT_CODE. Continuing..."
+fi
+
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Copy other alog files (optional)
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - -
+COPY_ALL_ALOGS="yes"
+if [[ $COPY_ALL_ALOGS == "yes" ]]; then
+    ALOG_FILES=""
+    for file in $(find "${FULL_MISSION_DIR}" -maxdepth 3 -type f -iname "*.alog"); do
+        echo "Found alog: $file"
+        # cp "$file" "$RESULTS_DIR/web"
+        # ALOG_FILES="$ALOG_FILES $file"
+    done
 fi
 
 
