@@ -1,0 +1,74 @@
+#!/bin/bash 
+######################################
+# Kevin Becker, Jan 11 2024
+# full_template_job with args
+######################################
+# Handle arguments (feel free to add 
+# or remove arguments)
+######################################
+warp=10;
+mission_time=60;
+ME=$1
+for ARGI; do
+    if [[ "${ARGI}" =~ "--warp=" ]]; then
+        warp="${ARGI#*=}"
+    elif [[ "${ARGI}" =~ "--mission_time=" ]]; then
+        mission_time="${ARGI#*=}"
+    elif [[ "${ARGI}" = "--foo" ]]; then
+        bar=True
+    else
+        : # The way bash works, its easier to just ignore other args. Don't exit
+    fi
+done
+
+######################################
+# Set Shore Variables
+######################################
+SHORE_REPO="moos-ivp-pavlab"
+SHORE_MISSION="missions/alpha_heron"
+SHORE_FLAGS=" --noconfirm $warp" 
+JOB_TIMEOUT=$((mission_time/warp)) # Note: this only returns ints
+SHORE_TARG="targ_shoreside.moos" # default: targ_shoreside.moos
+
+######################################
+# Set Vehcicle Variables 
+######################################
+VEHICLES=2
+VEHICLE_REPOS=("moos-ivp-pavlab" "moos-ivp-pavlab")
+VEHICLE_MISSIONS=("missions/alpha_heron" "missions/alpha_heron")
+SHARED_VEHICLE_FLAGS=" $warp --sim --noconfirm"
+VEHICLE_FLAGS=( " -w --vname=abe --index=1 --start=0,-10,170" 
+                " -e --vname=ben --index=2 --start=0,-20,180"  
+            )
+
+######################################
+# Source additional binaries and/or
+# libraries for all MOOSDBs
+######################################
+#   Useful if you have binaries in other moos-ivp-extend repos you 
+#   need to source for launching the script
+# EXTRA_BIN_REPOS=( "moos-ivp-extend1" "moos-ivp-extend2" ) # adds moos-ivp-extend_/bin and moos-ivp-extend4/bin to PATH
+# EXTRA_LIB_REPOS=( "moos-ivp-extend3" "moos-ivp-extend4" ) # adds to IVP_BEHAVIOR_DIRS
+# EXTRA_REPOS=( "moos-ivp-extend5" "moos-ivp-extend6" ) # shorthand for adding something to both BIN and LIB repos
+
+
+######################################
+# Launching the mission
+######################################
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# What to poke shoreside with to start mission. Entries are space seperated
+#    To REPLACE the START_POKE, use START_POKE="..."
+#    To APPEND to the START_POKE, use START_POKE+="..." 
+# Default:
+#    START_POKE="DEPLOY_ALL=true DEPLOY=true MOOS_MANUAL_OVERRIDE_ALL=false "
+#    START_POKE+="MOOS_MANUAL_OVERIDE_ALL=false MOOS_MANUAL_OVERRIDE=false "
+#    START_POKE+="MOOS_MANUAL_OVERIDE=false RETURN_ALL=false RETURN=false "  
+# Example Appended line:
+     START_POKE+=" SURVEY=true SURVEY_ALL=true "
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Delay START_POKE by this many seconds
+DELAY_POKE=5 # default. Increase if some vehicles don't start
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+VEHICLE_SCRIPTS=("launch_vehicle.sh" "launch_vehicle.sh") # default
+SHORESIDE_SCRIPT="launch_shoreside.sh" # default if VEHICLES > 0 (Note: defaults to "launch.sh" if VEHICLES=0)
+
