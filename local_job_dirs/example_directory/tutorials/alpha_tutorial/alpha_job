@@ -4,7 +4,11 @@
 
 SHORE_REPO="moos-ivp"
 SHORE_MISSION="ivp/missions/s1_alpha"
-SHORE_FLAGS=" --nogui 5"  
+warp=5
+if [[ $warp -gt $MONTE_MOOS_MAX_WARP ]]; then
+	warp=$MONTE_MOOS_MAX_WARP
+fi
+SHORE_FLAGS=" --nogui $warp"  
 JOB_TIMEOUT=60 # (timewarp is not accounted)
 SHORE_TARG="alpha.moos++"  # Targ file for the shore mission
 

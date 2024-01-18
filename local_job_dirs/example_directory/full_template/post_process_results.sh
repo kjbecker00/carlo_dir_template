@@ -6,7 +6,7 @@
 #-------------------------------------------------------------- 
 # Part 1: Convenience functions
 #-------------------------------------------------------------- 
-ME=$(basename "$0")
+ME="post_process_results.sh"
 VERBOSE=0
 vecho() { if [[ "$VERBOSE" -ge "$2" || -z "$2" ]]; then echo $(tput setaf 245)"$ME: $1" $(tput sgr0); fi }
 

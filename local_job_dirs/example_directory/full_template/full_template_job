@@ -8,7 +8,7 @@
 ######################################
 warp=10;
 mission_time=60;
-ME=$1
+ME="full_template_job"
 for ARGI; do
     if [[ "${ARGI}" =~ "--warp=" ]]; then
         warp="${ARGI#*=}"
@@ -20,6 +20,13 @@ for ARGI; do
         : # The way bash works, its easier to just ignore other args. Don't exit
     fi
 done
+
+# Limiting the max timewarp (as set in monte_info)
+# If running multiple MOOSDBs or heavy apps, you
+# can make this a fraction of the max warp
+if [[ $warp -gt $MONTE_MOOS_MAX_WARP ]]; then
+	warp=$MONTE_MOOS_MAX_WARP
+fi
 
 ######################################
 # Set Shore Variables
