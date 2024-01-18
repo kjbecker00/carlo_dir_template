@@ -27,6 +27,8 @@ export MONTE_MOOS_HOST_SSH_KEY="${HOME}/.ssh/id_rsa_yco" # CLIENT ONLY
 # Example: wget $MONTE_MOOS_HOST_URL_WGET/$MONTE_MOOS_WGET_BASE_DIR/filename
 export MONTE_MOOS_WGET_BASE_DIR="/monte" # CLIENT
 
+export MONTE_MOOS_MAX_WARP=10 # useful convention to set the max timewarp of a computer
+
 ####################################
 # Host info
 ####################################
