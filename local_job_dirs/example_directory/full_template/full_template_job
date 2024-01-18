@@ -22,9 +22,8 @@ for ARGI; do
 done
 
 # Limiting the max timewarp (as set in monte_info)
-# If running multiple MOOSDBs or heavy apps, you
-# can make this a fraction of the max warp
-if [[ $warp -gt $MONTE_MOOS_MAX_WARP ]]; then
+# for running multiple MOOSDBs or heavy apps
+if [[ $warp -gt $MONTE_MOOS_MAX_WARP && ! -z $MONTE_MOOS_MAX_WARP ]]; then
 	warp=$MONTE_MOOS_MAX_WARP
 fi
 
@@ -53,7 +52,7 @@ VEHICLE_FLAGS=( " -w --vname=abe --index=1 --start=0,-10,170"
 # libraries for all MOOSDBs
 ######################################
 #   Useful if you have binaries in other moos-ivp-extend repos you 
-#   need to source for launching the script
+#   need to source for launching all MOOSDBs
 # EXTRA_BIN_REPOS=( "moos-ivp-extend1" "moos-ivp-extend2" ) # adds moos-ivp-extend_/bin and moos-ivp-extend4/bin to PATH
 # EXTRA_LIB_REPOS=( "moos-ivp-extend3" "moos-ivp-extend4" ) # adds to IVP_BEHAVIOR_DIRS
 # EXTRA_REPOS=( "moos-ivp-extend5" "moos-ivp-extend6" ) # shorthand for adding something to both BIN and LIB repos
