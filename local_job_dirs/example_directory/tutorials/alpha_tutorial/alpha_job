@@ -1,14 +1,13 @@
-#!/bin/bash 
+#!/bin/bash
 # Kevin Becker, June 9 2023
 # alpha_job
 
 SHORE_REPO="moos-ivp"
 SHORE_MISSION="ivp/missions/s1_alpha"
-warp=5
-if [[ $warp -gt $MONTE_MOOS_MAX_WARP ]]; then
-	warp=$MONTE_MOOS_MAX_WARP
-fi
-SHORE_FLAGS=" --nogui $warp"  
-JOB_TIMEOUT=60 # (timewarp is not accounted)
-SHORE_TARG="alpha.moos++"  # Targ file for the shore mission
+JOB_TIMEOUT=60            # (timewarp is not accounted)
+SHORE_TARG="alpha.moos++" # Targ file for the shore mission
+SHORE_FLAGS=" --nogui $MONTE_MOOS_MAX_WARP" # Flags for the shore mission
 
+# What to plot when post-processing
+PLOT_X="WPT_EFF_TIME_ALL"
+PLOT_Y="WPT_EFF_DIST_ALL"
