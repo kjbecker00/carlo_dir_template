@@ -75,6 +75,10 @@ VEHICLE_FLAGS=( " -w --vname=abe --index=1 --start=0,-10,170"
 # Delay START_POKE by this many seconds
 DELAY_POKE=5 # default. Increase if some vehicles don't start
 # - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Repeat START_POKE this many times (with 0.1 second delay between each poke)
+# NUM_REPEAT_POKES=1 # default. Increase if some vehicles don't start
+# - - - - - - - - - - - - - - - - - - - - - - - - -
 VEHICLE_SCRIPTS=("launch_vehicle.sh" "launch_vehicle.sh") # default
 SHORESIDE_SCRIPT="launch_shoreside.sh" # default if VEHICLES > 0 (Note: defaults to "launch.sh" if VEHICLES=0)
 
