@@ -82,3 +82,5 @@ DELAY_POKE=5 # default. Increase if some vehicles don't start
 VEHICLE_SCRIPTS=("launch_vehicle.sh" "launch_vehicle.sh") # default
 SHORESIDE_SCRIPT="launch_shoreside.sh" # default if VEHICLES > 0 (Note: defaults to "launch.sh" if VEHICLES=0)
 
+USE_MISSION_CLEAN_SCRIPT="yes" # default. If "yes", will run ./clean.sh in the mission dir before launching
+# Set this to no if your clean script requries confirmation
