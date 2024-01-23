@@ -8,9 +8,22 @@ repo_links.txt
 
 # Cache files
 status.txt
-.built_dirs.txt
+.built_dirs
+host_job_queue.txt
+.DS_Store
 
 # Other
 results/*
+compiled_results/*
+
+# Temp files/dirs
 job_dirs/*
+moos_dirs/*
+
+# Backup files
+.deleted_results
+.deleted_results_2
+
+
+
 
