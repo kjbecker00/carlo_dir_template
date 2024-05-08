@@ -1,14 +1,13 @@
 #!/bin/bash
 
 ####################################
-# Shared (must be the same for 
+# Shared (must be the same for
 # clients and the host)
 ####################################
 # Where clients put files (NOTE: the MONTE_MOOS_USERNAME must have write access to this directory)
 export MONTE_MOOS_HOST_RECIEVE_DIR="/home/yodacora/monte-moos/" # SHARED
-# Name of the host
+# What to name the host computer
 export MONTE_MOOS_HOST="oceanai" # SHARED
-
 
 ####################################
 # Client info
@@ -18,16 +17,18 @@ export MONTE_MOOS_BASE_REPO_LINKS="${CARLO_DIR_LOCATION}/repo_links.txt" # CLIEN
 # Where to find/put moos-ivp installations
 export MONTE_MOOS_CLIENT_REPOS_DIR="${CARLO_DIR_LOCATION}/moos_dirs" # CLIENT ONLY
 # WGET info (for downloading files)
-export MONTE_MOOS_HOST_URL_WGET="https://oceanai.mit.edu" # CLIENT ONLY
+export MONTE_MOOS_HOST_URL_WGET="https://oceanai.mit.edu" # CLIENT, but must match host
 # SSH info (for retrieving files)
-export MONTE_MOOS_HOSTNAME_SSH="oceanai.mit.edu" # CLIENT ONLY
-export MONTE_MOOS_USERNAME="yodacora" # CLIENT ONLY
-export MONTE_MOOS_HOST_SSH_KEY="${HOME}/.ssh/id_rsa_yco" # CLIENT ONLY
-# Where the client host can wget files from the host's $MONTE_MOOS_HOST_WEB_ROOT_DIR
-# Example: wget $MONTE_MOOS_HOST_URL_WGET/$MONTE_MOOS_WGET_BASE_DIR/filename
-export MONTE_MOOS_WGET_BASE_DIR="/monte" # CLIENT
+export MONTE_MOOS_HOSTNAME_SSH="oceanai.mit.edu"         # CLIENT, but must match host
+export MONTE_MOOS_USERNAME="yodacora"                    # CLIENT, but must work on host with the given ssh key
+export MONTE_MOOS_HOST_SSH_KEY="${HOME}/.ssh/id_rsa_yco" # CLIENT, but must work on host with given username
 
-export MONTE_MOOS_MAX_WARP=10 # useful convention to set the max timewarp of a computer
+# Where the client host can wget files from the host's $MONTE_MOOS_HOST_WEB_ROOT_DIR
+# Example:    wget $MONTE_MOOS_HOST_URL_WGET   $MONTE_MOOS_WGET_BASE_DIR /filename
+# Looks like: wget   https://oceanai.mit.edu   /monte                    /results
+export MONTE_MOOS_WGET_BASE_DIR="/monte" # CLIENT, but must match host
+
+export MONTE_MOOS_MAX_WARP=10 # useful convention to set the max timewarp of a computer and note its computing power
 
 ####################################
 # Host info
@@ -37,7 +38,4 @@ export MONTE_MOOS_HOST_JOB_DIRS="/home/monte/carlo_dir/public_job_dirs" # HOST O
 # Where the host retreives the queue files
 export MONTE_MOOS_HOST_QUEUE_FILES="/home/monte/carlo_dir/public_queue_files" # HOST ONLY
 # Where clients retrieve files using: wget $MONTE_MOOS_HOST_URL_WGET/$MONTE_MOOS_WGET_BASE_DIR/filename
-export MONTE_MOOS_HOST_WEB_ROOT_DIR="/home/web/monte"  # HOST ONLY
-
-
-
+export MONTE_MOOS_HOST_WEB_ROOT_DIR="/home/web/monte" # HOST ONLY
