@@ -13,8 +13,12 @@ export MONTE_MOOS_HOST="oceanai" # SHARED
 # Client info
 ####################################
 # Where to find repo_links.txt
+#   if the user has multiple carlo_dirs,
+#   they can refrence their base repo_links.txt file
 export MONTE_MOOS_BASE_REPO_LINKS="${CARLO_DIR_LOCATION}/repo_links.txt" # CLIENT ONLY
 # Where to find/put moos-ivp installations
+#   if the user has multiple carlo_dirs,
+#   they can refrence their base moos_dirs directory
 export MONTE_MOOS_CLIENT_REPOS_DIR="${CARLO_DIR_LOCATION}/moos_dirs" # CLIENT ONLY
 # WGET info (for downloading files)
 export MONTE_MOOS_HOST_URL_WGET="https://oceanai.mit.edu" # CLIENT, but must match host

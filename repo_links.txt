@@ -1,4 +1,16 @@
+# Template repo_links.txt file
+# Kevin Becker, May 14 2024
+#
+# This file contains links to 
+# moos ivp repositories on this 
+# particular computer. Other 
+# repo_links.txt files may be shared
+# between clients.
+##########################
+# Where the user has base moos-ivp installed:
 ~/moos-ivp/
+
+# Other local moos-ivp-extend repositories:
 ~/moos-ivp-pavlab/
 ~/moos-ivp-swarm/
 ~/moos-ivp-2680/
